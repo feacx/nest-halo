@@ -11,7 +11,7 @@ export class ArticleService {
   ) {}
 
   // 查找所有用户
-  async findALl(): Promise<Article[]> {
+  async findAll(): Promise<Article[]> {
     const articles = await this.articleModel.find();
     return articles;
   }
@@ -22,8 +22,8 @@ export class ArticleService {
   }
 
   // 添加一篇文章
-  async addOne(body: CreateArticleDTO): Promise<void> {
-    await this.articleModel.create(body);
+  async create(body: CreateArticleDTO): Promise<Article> {
+    return await this.articleModel.create(body);
   }
 
   // 编辑一篇文章
