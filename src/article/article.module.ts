@@ -1,12 +1,12 @@
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
 import { ArticleController } from './article.controller';
-import { articleSchema } from './article.schema';
+import { ArticleSchema } from './article.schema';
 import { ArticleService } from './article.service';
 
 @Module({
   imports: [
-    MongooseModule.forFeature([{ name: 'Articles', schema: articleSchema }]),
+    MongooseModule.forFeature([{ name: 'Articles', schema: ArticleSchema }]),
   ],
   controllers: [ArticleController],
   providers: [ArticleService],
