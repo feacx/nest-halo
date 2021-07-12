@@ -1,37 +1,37 @@
 import { Injectable } from '@nestjs/common';
-import { InjectModel } from '@nestjs/mongoose';
-import { Model } from 'mongoose';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
 import { CreateArticleDTO, EditArticleDTO } from './article.dto';
-import { Article } from './article.interface';
+import { ArticleEntity } from './article.entity';
 
 @Injectable()
 export class ArticleService {
   constructor(
-    @InjectModel('Articles') private readonly articleModel: Model<Article>,
+    @InjectRepository(ArticleEntity)
+    private readonly articleModel: Repository<ArticleEntity>,
   ) {}
 
-  // 查找所有用户
-  async findAll(): Promise<Article[]> {
-    const articles = await this.articleModel.find();
-    return articles;
+  // 查找所有文章
+  async findAll(): Promise<ArticleEntity[]> {
+    return await this.articleModel.find();
   }
 
   // 查找单篇文章
-  async findOne(_id: string): Promise<Article> {
-    return await this.articleModel.findById(_id);
+  async findOne(_id: string): Promise<ArticleEntity> {
+    return await this.articleModel.findOne(_id);
   }
 
   // 添加一篇文章
-  async create(body: CreateArticleDTO): Promise<Article> {
-    return await this.articleModel.create(body);
+  async create(body: CreateArticleDTO): Promise<ArticleEntity> {
+    return this.articleModel.create(body);
   }
 
   // 编辑一篇文章
-  async editOne(_id: string, body: EditArticleDTO): Promise<void> {
-    await this.articleModel.findByIdAndUpdate(_id, body);
+  async editOne(_id: string, body: EditArticleDTO) {
+    await this.articleModel.update(_id, body);
   }
 
   async deleteOne(_id: string): Promise<void> {
-    await this.articleModel.findByIdAndDelete(_id);
+    await this.articleModel.delete(_id);
   }
 }

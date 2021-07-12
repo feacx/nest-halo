@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
-// import { MongooseModule } from '@nestjs/mongoose';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { ArticleEntity } from './article/article.entity';
 import { ArticleModule } from './article/article.module';
 
 @Module({
@@ -12,6 +12,7 @@ import { ArticleModule } from './article/article.module';
       synchronize: true,
       useNewUrlParser: true,
       logging: true,
+      entities: [ArticleEntity],
     }),
     ArticleModule,
   ],

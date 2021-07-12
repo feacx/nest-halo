@@ -1,9 +1,9 @@
-import { Column, Entity, ObjectIdColumn } from 'typeorm';
+import { Column, Entity, PrimaryColumn } from 'typeorm';
 
-@Entity()
-export class Article {
-  @ObjectIdColumn()
-  _id: string;
+@Entity('articles')
+export class ArticleEntity {
+  @PrimaryColumn()
+  id: number;
 
   @Column()
   title: string;

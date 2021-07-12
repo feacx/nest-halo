@@ -9,7 +9,7 @@ import {
 } from '@nestjs/common';
 import { Exception } from 'src/utils/exception';
 import { CreateArticleDTO, EditArticleDTO } from './article.dto';
-import { Article } from './article.interface';
+import { ArticleEntity } from './article.entity';
 import { ArticleService } from './article.service';
 
 interface ArticleResponse<T = unknown> {
@@ -23,7 +23,7 @@ export class ArticleController {
   constructor(private readonly articleService: ArticleService) {}
 
   @Get('articles')
-  async findAll(): Promise<ArticleResponse<Article[]>> {
+  async findAll(): Promise<ArticleResponse<ArticleEntity[]>> {
     return {
       code: 200,
       data: await this.articleService.findAll(),
@@ -32,7 +32,9 @@ export class ArticleController {
   }
 
   @Get(':_id')
-  async findOne(@Param('_id') _id: string): Promise<ArticleResponse<Article>> {
+  async findOne(
+    @Param('_id') _id: string,
+  ): Promise<ArticleResponse<ArticleEntity>> {
     return {
       code: 200,
       data: await this.articleService.findOne(_id),
