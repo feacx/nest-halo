@@ -69,7 +69,6 @@ export class ArticleController {
   async deleteOne(@Param('_id') _id: string): Promise<ArticleResponse> {
     const article = await this.articleService.findOne(_id);
     !article && Exception(206, 'Not found article');
-    await this.articleService.deleteOne(_id);
     return {
       code: 200,
       message: 'Success.',
