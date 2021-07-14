@@ -1,13 +1,25 @@
-import { Column, Entity, PrimaryColumn } from 'typeorm';
+import {
+  Column,
+  CreateDateColumn,
+  DeleteDateColumn,
+  Entity,
+  ObjectIdColumn,
+} from 'typeorm';
 
 @Entity('articles')
 export class ArticleEntity {
-  @PrimaryColumn()
-  id: number;
+  @ObjectIdColumn()
+  _id: string;
 
   @Column()
   title: string;
 
   @Column()
   content: string;
+
+  @CreateDateColumn()
+  created: Date;
+
+  @DeleteDateColumn()
+  deletedAt?: Date;
 }

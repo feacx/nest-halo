@@ -1,7 +1,11 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { CreateArticleDTO, EditArticleDTO } from './article.dto';
+import {
+  CreateArticleDTO,
+  DeleteArticleDTO,
+  EditArticleDTO,
+} from './article.dto';
 import { ArticleEntity } from './article.entity';
 
 @Injectable()
@@ -23,7 +27,7 @@ export class ArticleService {
 
   // 添加一篇文章
   async create(body: CreateArticleDTO): Promise<ArticleEntity> {
-    return this.articleModel.create(body);
+    return this.articleModel.save(body);
   }
 
   // 编辑一篇文章
