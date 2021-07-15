@@ -4,7 +4,6 @@ import { ArticleEntity } from './article/article.entity';
 import { ArticleModule } from './article/article.module';
 
 @Module({
-  // imports: [MongooseModule.forRoot('mongodb://localhost/fash'), ArticleModule],
   imports: [
     TypeOrmModule.forRoot({
       type: 'mongodb',

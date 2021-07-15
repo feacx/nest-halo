@@ -7,7 +7,6 @@ import {
   Post,
   Put,
 } from '@nestjs/common';
-import { Exception } from 'src/utils/exception';
 import { CreateArticleDTO, EditArticleDTO } from './article.dto';
 import { ArticleEntity } from './article.entity';
 import { ArticleService } from './article.service';
@@ -67,8 +66,7 @@ export class ArticleController {
 
   @Delete(':_id')
   async deleteOne(@Param('_id') _id: string): Promise<ArticleResponse> {
-    const article = await this.articleService.findOne(_id);
-    !article && Exception(206, 'Not found article');
+    await this.articleService.deleteOne(_id);
     return {
       code: 200,
       message: 'Success.',
