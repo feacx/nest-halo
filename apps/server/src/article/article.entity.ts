@@ -1,3 +1,4 @@
+import { ApiProperty } from '@nestjs/swagger';
 import {
   Column,
   CreateDateColumn,
@@ -15,6 +16,7 @@ export class ArticleEntity {
   title: string;
 
   @Column()
+  @ApiProperty({ description: '内容' })
   content: string;
 
   @CreateDateColumn()

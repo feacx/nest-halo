@@ -11,6 +11,7 @@
     "format": "prettier --write \"apps/**/*.ts\" \"libs/**/*.ts\"",
     "start": "nest start",
     "serve": "nest start --watch",
+    "serve:admin": "nest start admin --watch",
     "start:debug": "nest start --debug --watch",
     "start:prod": "node dist/main",
     "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
@@ -21,10 +22,11 @@
     "test:e2e": "jest --config ./apps/server/test/jest-e2e.json"
   },
   "dependencies": {
-    "@nestjs/common": "^7.6.15",
-    "@nestjs/core": "^7.6.15",
+    "@nestjs/common": "^8.0.4",
+    "@nestjs/core": "^8.0.4",
     "@nestjs/mongoose": "^8.0.0",
-    "@nestjs/platform-express": "^7.6.15",
+    "@nestjs/platform-express": "^8.0.4",
+    "@nestjs/swagger": "^5.0.4",
     "@nestjs/typeorm": "^8.0.1",
     "@types/mongodb": "^3.6.20",
     "mongodb": "^3.6.10",
@@ -32,6 +34,7 @@
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
     "rxjs": "^7.2.0",
+    "swagger-ui-express": "^4.1.6",
     "typeorm": "^0.2.34"
   },
   "devDependencies": {

@@ -7,6 +7,7 @@ import {
   Post,
   Put,
 } from '@nestjs/common';
+import { ApiTags } from '@nestjs/swagger';
 import { CreateArticleDTO, EditArticleDTO } from './article.dto';
 import { ArticleEntity } from './article.entity';
 import { ArticleService } from './article.service';
@@ -18,6 +19,7 @@ interface ArticleResponse<T = unknown> {
 }
 
 @Controller('article')
+@ApiTags('文章')
 export class ArticleController {
   constructor(private readonly articleService: ArticleService) {}
 
