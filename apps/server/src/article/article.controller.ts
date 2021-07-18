@@ -1,3 +1,4 @@
+import { ArticleEntity } from '@libs/db/entities/article.entity';
 import {
   Body,
   Controller,
@@ -9,7 +10,6 @@ import {
 } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { CreateArticleDTO, EditArticleDTO } from './article.dto';
-import { ArticleEntity } from './article.entity';
 import { ArticleService } from './article.service';
 
 interface ArticleResponse<T = unknown> {

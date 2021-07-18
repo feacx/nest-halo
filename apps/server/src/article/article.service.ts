@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { CreateArticleDTO, EditArticleDTO } from './article.dto';
-import { ArticleEntity } from './article.entity';
+import { ArticleEntity } from '@libs/db/entities/article.entity';
 
 @Injectable()
 export class ArticleService {
@@ -32,6 +32,8 @@ export class ArticleService {
   }
 
   async deleteOne(_id: string): Promise<void> {
-    await this.articleModel.delete(_id);
+    const article = await this.articleModel.findOne(_id);
+    article.deletedAt = new Date();
+    await this.articleModel.save(article);
   }
 }
